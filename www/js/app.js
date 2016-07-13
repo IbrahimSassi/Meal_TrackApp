@@ -59,10 +59,37 @@ app.config(function ($stateProvider, $urlRouterProvider,BackandProvider) {
             abstract: true,
             templateUrl: "templates/tabs.html"
         })
-        .state('test', {
+        /*.state('test', {
             url: "/test",
             controller: 'DashboardCtrl',
             templateUrl: "templates/tabs-dashboard.html"
+        })*/
+        .state('tab.meals',{
+            url:'/meals',
+            views:{
+                'tab-meals':{
+                    templateUrl:'templates/tabs/tab-meals.html',
+                    controller:'MealListCtrl'
+                }
+            }
+        })
+        .state('tab.track',{
+            url:'/track',
+            views:{
+                'tab-track':{
+                    templateUrl:'templates/tabs/tab-track.html',
+                    controller:'MealCreateCtrl'
+                }
+            }
+        })
+        .state('tab.account',{
+            url:'/account',
+            views:{
+                'tab-account':{
+                    templateUrl:'templates/tabs/tab-account.html',
+                    controller:'AccountCtrl'
+                }
+            }
         })
 		//TODO
 	;

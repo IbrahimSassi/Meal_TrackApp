@@ -4,7 +4,6 @@ var app = angular.module('mealtrack.controllers.authentication', []);
  * LoginCtrl
  *********************************************************************/
 app.controller('LoginCtrl', function ($scope, $state, AuthService) {
-
 	$scope.formData = {
 		"email": "",
 		"password": ""
@@ -14,17 +13,15 @@ app.controller('LoginCtrl', function ($scope, $state, AuthService) {
         if(form.$valid){
             console.log("LoginCtrl::login");
             AuthService.signin($scope.formData.email,
-                $scope.formData.password)
-                .then(function (user) {
-                    console.log("OKKKK");
-                    console.log(user);
-
-                }, function (error) {
-                    console.log(error)
+                $scope.formData.password).then(function () {
+                    console.log(AuthService.CurrentUser);
+                    $state.go('tab.meals');
                 });
+
         }
 
-	};
+
+    };
 
 });
 
@@ -44,29 +41,15 @@ app.controller('SignupCtrl', function ($scope, $state, AuthService) {
         if(form.$valid) {
             console.log("SignupCtrl::signup");
 
-            AuthService.signup($scope.formData.firstName,
+            AuthService.signup(
+                $scope.formData.firstName,
                 $scope.formData.lastName,
                 $scope.formData.email,
                 $scope.formData.password)
-                .then(function (signUpResponse) {
-                    if(signUpResponse.userId===null){
-                        console.log("Exist");
-                        console.log(signUpResponse);
-
-                    }else
-                    {
-                        console.log("OK");
-                        console.log(signUpResponse);
-                    }
-
-
-
-                }, function (error) {
-                    console.log("Exist");
-
-                    console.log(error)
+                .then(function () {
+                    console.log(AuthService.CurrentUser);
+                    $state.go('tab.meals');
                 });
-            ;
 
         }
 	};
