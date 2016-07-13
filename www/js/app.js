@@ -3,11 +3,13 @@ var app = angular.module('mealtrack', [
 	'ngMessages',
 	'ngCordova',
 	'angularMoment',
+    'backand',
 	'mealtrack.controllers.authentication',
 	'mealtrack.controllers.meals',
 	'mealtrack.controllers.account',
 	'mealtrack.services.authentication',
 	'mealtrack.services.meals',
+    'mealtrack.services.CRUD',
 	'mealtrack.filters.mealtime'
 ]);
 
@@ -24,13 +26,22 @@ app.run(function ($ionicPlatform) {
 		}
 	});
 
-		// Initialise Parse
-		Parse.initialize("<PLEASE-INSERT>");
-		Parse.serverURL = '<PLEASE-INSERT>';
+
+
+
+
 });
 
-app.config(function ($stateProvider, $urlRouterProvider) {
-	$stateProvider
+app.config(function ($stateProvider, $urlRouterProvider,BackandProvider) {
+
+
+    BackandProvider.setAppName('mealtrack12'); // change here to your app name
+    BackandProvider.setSignUpToken('0809f978-dba2-4b04-bfce-23b7efceedbd'); //token that enable sign up. see http://docs.backand.com/en/latest/apidocs/security/index.html#sign-up
+   // BackandProvider.setAnonymousToken('bfc527d2-867d-496e-bdce-c2c1053f2aff'); // token is for anonymous login. see http://docs.backand.com/en/latest/apidocs/security/index.html#anonymous-access
+
+
+
+    $stateProvider
 		.state('login', {
 			url: "/login",
 			cache: false,
@@ -43,11 +54,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			controller: 'SignupCtrl',
 			templateUrl: "templates/signup.html"
 		})
-		.state('tab', {
-			url: "/tab",
-			abstract: true,
-			templateUrl: "templates/tabs.html"
-		})
+        .state('tab', {
+            url: "/tab",
+            abstract: true,
+            templateUrl: "templates/tabs.html"
+        })
+        .state('test', {
+            url: "/test",
+            controller: 'DashboardCtrl',
+            templateUrl: "templates/tabs-dashboard.html"
+        })
 		//TODO
 	;
 

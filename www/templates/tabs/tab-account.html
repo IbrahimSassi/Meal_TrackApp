@@ -24,12 +24,19 @@
 					       ng-model="formData.name"
 					       ng-required="true" >
 				</label >
-				<div class="form-errors"
-				     ng-messages="signupForm.name.$error"
-				     ng-messages-include="templates/form-errors.html" >
-				</div >
 
-				<label class="item item-input item-floating-label"
+
+                <div class="form-errors"
+                     ng-messages="signupForm.name.$error">
+                    <div ng-messages-include="templates/form-errors.html">
+                    </div>
+                </div>
+
+
+
+
+
+                <label class="item item-input item-floating-label"
 				       ng-class="{'has-error':signupForm.email.$invalid}" >
 					<span class="input-label" >Email</span >
 					<input type="email"
@@ -38,12 +45,18 @@
 					       ng-model="formData.email"
 					       ng-required="true" >
 				</label >
-				<div class="form-errors"
-				     ng-messages="signupForm.email.$error"
-				     ng-messages-include="templates/form-errors.html" >
-				</div >
 
-			</ion-list >
+
+                <div class="form-errors"
+                     ng-messages="signupForm.email.$error">
+                    <div ng-messages-include="templates/form-errors.html">
+                    </div>
+                </div>
+
+
+
+
+            </ion-list >
 			<button class="button button-royal button-block"
 			        type="submit" >Save
 			</button >

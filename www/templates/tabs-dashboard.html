@@ -1,0 +1,21 @@
+<ion-view view-title="Items">
+    <div>
+        <ion-content class="padding has-header">
+
+            <!-- LIST -->
+                <div class="list card" ng-repeat="object in data">
+                    <div class="item item-icon-right item-icon-left">
+                        <i class="ion-compose icon" ></i>
+
+
+                        <h2 class="text-center">{{object.name}}</h2>
+                        <i class="icon ion-close-round" ng-click=""></i>
+                    </div>
+                    <div class="item item-body">
+                        {{object.description}}
+                    </div>
+                </div>
+        </ion-content>
+    </div>
+</ion-view>
+
