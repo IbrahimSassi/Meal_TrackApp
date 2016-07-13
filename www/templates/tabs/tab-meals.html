@@ -11,18 +11,18 @@
 		     ng-repeat="meal in meals.results" >
 
 			<div class="item" >
-				<h2 >{{meal.attributes.title}}</h2 >
-				<p>{{meal.attributes.created | mealtime}} - <span am-time-ago="meal.attributes.created"></span></p>
+				<h2 >{{meal.title}}</h2 >
+				<p>{{meal.created | mealtime}} - <span am-time-ago="meal.created"></span></p>
 			</div >
 
 			<div class="item item-image"
 			     ng-if="meal.attributes.picture" >
-				<img ng-src="{{meal.attributes.picture.url()}}" >
+				<img ng-src="{{meal.picture.url()}}" >
 			</div >
 
 			<div class="item " >
-				<span class="category" >#{{meal.attributes.category|lowercase}}</span >
-				<span class="calories" >{{meal.attributes.calories}}cal</span >
+				<span class="category" >#{{meal.category|lowercase}}</span >
+				<span class="calories" >{{meal.calories}}cal</span >
 			</div >
 
 		</div >

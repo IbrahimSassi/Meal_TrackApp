@@ -27,7 +27,26 @@ app.service("MealService", function ($q,ItemsModel,AuthService) {
 			self.isLoading = true;
 			var d = $q.defer();
 
-			//TODO
+            ItemsModel.getByUser(AuthService.CurrentUser.userId)
+                .then(function (result) {
+                    console.log(result);
+                    if(result.data.length == result.data.length){
+                        self.hasMore=false;
+                    }
+
+                    self.results=result.data;
+
+
+                    d.resolve(result);
+                }, function (err) {
+                    console.log(err);
+                    d.reject(err);
+                });
+
+
+
+
+            //TODO
 
 
 

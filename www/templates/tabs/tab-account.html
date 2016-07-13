@@ -15,15 +15,32 @@
 		      ng-submit="submit(signupForm)" >
 			<ion-list >
 
-				<label class="item item-input item-floating-label"
-				       ng-class="{'has-error':signupForm.name.$invalid}" >
-					<span class="input-label" >Name</span >
-					<input type="text"
-					       placeholder="Name"
-					       name="name"
-					       ng-model="formData.name"
-					       ng-required="true" >
-				</label >
+                <label class="item item-input item-floating-label"
+                       ng-class="{'has-error':signupForm.firstName.$invalid}" >
+                    <span class="input-label" >First Name </span >
+                    <input type="text"
+                           placeholder="First Name"
+                           name="firstName"
+                           ng-model="formData.firstName"
+                           ng-required="true" >
+                </label >
+
+
+                <div class="form-errors"
+                     ng-messages="signupForm.name.$error">
+                    <div ng-messages-include="templates/form-errors.html">
+                    </div>
+                </div>
+
+                <label class="item item-input item-floating-label"
+                       ng-class="{'has-error':signupForm.lastName.$invalid}" >
+                    <span class="input-label" >lastName </span >
+                    <input type="text"
+                           placeholder="lastName"
+                           name="lastName"
+                           ng-model="formData.lastName"
+                           ng-required="true" >
+                </label >
 
 
                 <div class="form-errors"
