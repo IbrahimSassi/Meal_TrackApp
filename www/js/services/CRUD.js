@@ -10,7 +10,7 @@ var app = angular.module('mealtrack.services.CRUD', []);
 app.service('ItemsModel', function ($http, Backand) {
     var service = this,
         baseUrl = '/1/objects/',
-        objectName = 'items/';
+        objectName = 'Meal/';
 
     function getUrl() {
         return Backand.getApiUrl() + baseUrl + objectName;

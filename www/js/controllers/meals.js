@@ -102,9 +102,9 @@ app.controller('MealListCtrl', function ($scope, $ionicLoading, MealService) {
 
 	$scope.meals = MealService;
 
-	$ionicLoading.show();
+	//$ionicLoading.show();
 	$scope.meals.load().then(function () {
-		$ionicLoading.hide();
+	//	$ionicLoading.hide();
 	});
 
 	$scope.refreshItems = function () {
@@ -143,21 +143,49 @@ app.controller('MealCreateCtrl', function ($scope,
 
 
 	$scope.trackMeal = function (form) {
-		console.log("MealCreateCtrl::trackMeal");
+
+        if(form.$valid){
+            console.log("MealCreateCtrl::trackMeal");
+            $ionicLoading.show();
+            MealService.track($scope.formData)
+                .then(function () {
+                    $scope.resetFormData();
+                    $ionicLoading.hide();
+                    $ionicPopup.alert({
+                        'title':'Meal Added'
+                    });
+                    form.$setPristine(true);
+                    $state.go('tab.meals');
+
+                });
+        }
 		//TODO
 	};
 
 	$scope.addPicture = function () {
-		//var options = {
-		//	quality: 50,
-		//	destinationType: Camera.DestinationType.DATA_URL,
-		//	sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-		//	allowEdit: true,
-		//	encodingType: Camera.EncodingType.JPEG,
-		//	targetWidth: 480,
-		//	popoverOptions: CameraPopoverOptions,
-		//	saveToPhotoAlbum: false
-		//};
+		var options = {
+			quality: 50,
+			destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY, //Development Mode
+           // sourceType: Camera.PictureSourceType.CAMERA, Production Mode
+			allowEdit: true,
+			encodingType: Camera.EncodingType.JPEG,
+			targetWidth: 480,
+			popoverOptions: CameraPopoverOptions,
+			saveToPhotoAlbum: false
+		};
+
+
+        $cordovaCamera.getPicture(options)
+            .then(function (imageData) {
+                $scope.formData.picture=imageData;
+            }, function (err) {
+                console.error(err);
+                $ionicPopup.alert({
+                    'title':"Error Getting Pic",
+                    subTitle:'You Had a problem , Try again please'
+                })
+            });
 
 
 		//TODO

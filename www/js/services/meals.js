@@ -3,14 +3,7 @@ var app = angular.module('mealtrack.services.meals', []);
 
 
 
-
-
-
-
-
-
-
-app.service("MealService", function ($q) {
+app.service("MealService", function ($q,ItemsModel,AuthService) {
 	var self = {
 		'page': 0,
 		'page_size': 20,
@@ -36,13 +29,36 @@ app.service("MealService", function ($q) {
 
 			//TODO
 
+
+
 			return d.promise;
 		},
 		'track': function (data) {
 			self.isSaving = true;
 			var d = $q.defer();
+            var meal = {
+                "owner":AuthService.CurrentUser.userId,
+                "title": data.title,
+                "category":data.category,
+                "calories" :data.calories,
+                "picture" : data.picture,
+                "created":new Date()
+            };
+            ItemsModel.create(meal)
+                .then(function (result) {
+                    console.log("SUCCESS");
+                    console.log(result.config.data);
+                    self.results.unshift(meal);
+                    d.resolve(result);
+                }, function (err) {
+                    console.log(err);
+                    d.reject(err);
+                });
 
-			//TODO
+
+
+
+
 
 			return d.promise;
 		}

@@ -35,9 +35,9 @@ app.run(function ($ionicPlatform) {
 app.config(function ($stateProvider, $urlRouterProvider,BackandProvider) {
 
 
-    BackandProvider.setAppName('mealtrack12'); // change here to your app name
-    BackandProvider.setSignUpToken('0809f978-dba2-4b04-bfce-23b7efceedbd'); //token that enable sign up. see http://docs.backand.com/en/latest/apidocs/security/index.html#sign-up
-   // BackandProvider.setAnonymousToken('bfc527d2-867d-496e-bdce-c2c1053f2aff'); // token is for anonymous login. see http://docs.backand.com/en/latest/apidocs/security/index.html#anonymous-access
+    BackandProvider.setAppName('mealtrack'); // change here to your app name
+    BackandProvider.setSignUpToken('3467e603-17f7-4835-8b35-faf977381a92'); //token that enable sign up. see http://docs.backand.com/en/latest/apidocs/security/index.html#sign-up
+   // BackandProvider.setAnonymousToken('f667add7-c9a2-432e-8646-7264425ca19b'); // token is for anonymous login. see http://docs.backand.com/en/latest/apidocs/security/index.html#anonymous-access
 
 
 
